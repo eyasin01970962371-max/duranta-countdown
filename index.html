@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>দুরন্ত ফুটবল ক্লাব - Match Countdown</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,#17364b,#050a0f 65%);font-family:Arial,"Noto Sans Bengali",sans-serif;color:#fff;text-align:center}
+.card{width:min(900px,94vw);padding:34px 20px 40px;border:1px solid #3cff6b55;border-radius:24px;background:#071018dd;box-shadow:0 0 50px #20ff6040}
+.brand{font-size:18px;letter-spacing:3px;color:#8cff9d;font-weight:700}.title{font-size:clamp(42px,9vw,88px);margin:10px 0 4px;font-weight:900;letter-spacing:2px}.sub{font-size:clamp(20px,4vw,34px);color:#baffc4;margin-bottom:28px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.box{background:#0b151e;border:2px solid #36ff68;border-radius:16px;padding:18px 8px}.num{font-size:clamp(38px,8vw,72px);font-weight:900}.label{font-size:13px;letter-spacing:2px;color:#9db6a4;margin-top:5px}
+.info{margin-top:25px;font-size:18px;color:#ddd}.done{font-size:clamp(34px,7vw,64px);font-weight:900;color:#7dff93}
+@media(max-width:520px){.timer{gap:7px}.box{padding:14px 4px}.label{font-size:10px;letter-spacing:1px}}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="brand">DURANTA FOOTBALL CLUB • KASHIMPUR • JHENAIDAH</div>
+<div class="title">MATCH DAY</div>
+<div class="sub">খেলা শুরু হতে আর...</div>
+<div id="timer" class="timer">
+<div class="box"><div id="d" class="num">00</div><div class="label">DAYS</div></div>
+<div class="box"><div id="h" class="num">00</div><div class="label">HOURS</div></div>
+<div class="box"><div id="m" class="num">00</div><div class="label">MINUTES</div></div>
+<div class="box"><div id="s" class="num">00</div><div class="label">SECONDS</div></div>
+</div>
+<div id="info" class="info">২ অক্টোবর ২০২৬ • বিকাল ৪:৩০ • কাশিমপুর</div>
+</div>
+<script>
+const target = new Date("2026-10-02T16:30:00+06:00").getTime();
+function tick(){
+ const now=Date.now(), diff=target-now;
+ if(diff<=0){document.getElementById("timer").innerHTML='<div class="done" style="grid-column:1/-1">MATCH TIME! ⚽🔥</div>'; return;}
+ const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+ document.getElementById("d").textContent=String(d).padStart(2,"0");
+ document.getElementById("h").textContent=String(h).padStart(2,"0");
+ document.getElementById("m").textContent=String(m).padStart(2,"0");
+ document.getElementById("s").textContent=String(s).padStart(2,"0");
+}
+tick();setInterval(tick,250);
+</script>
+</body>
+</html>
